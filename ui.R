@@ -9,11 +9,14 @@ shinyUI(fluidPage (
                      and recorded the heights of English families. That was 
                      over 100 years ago."),
             h3("Let's take a look at these children..."),
-            selectInput("family",
-                        label="Choose options to display historical heights",
-                        choices = c("Fathers and Sons", "Mothers and Sons",
-                                    "Fathers and Daughters", "Mothers and Daughters"),
-                        selected = "Fathers and Sons")
+            selectInput("pgen",
+                        label="The parent whose height was recorded was the",
+                        choices = c("Father", "Mother"),
+                        selected = "Father"),
+            selectInput("cgen",
+                        label="The child was a",
+                        choices = c("Son", "Daughter"),
+                        selected = "Son")
                         ),
         mainPanel(
             plotOutput("results")

@@ -4,30 +4,44 @@ library(ggplot2)
 ## Data and prediction model
 library(HistData)
 data(PearsonLee)
-str(PearsonLee)
+m <- min(PearsonLee$child)
 
 shinyServer(
     function(input, output) {
         output$results <- renderPlot({
 
-            fam <- switch(input$family,
-                "Fathers and Sons" = "fs", 
-                "Mothers and Sons" = "ms",
-                "Fathers and Daughters" =  "fd",
-                "Mothers and Daughters" =  "md")
-
-            colors <- switch(input$family,
-                          "Fathers and Sons" = "navy", 
-                          "Mothers and Sons" =  "blue",
-                          "Fathers and Daughters" =  "purple",
-                          "Mothers and Daughters" =  "pink")
+            par.gen <- switch(input$pgen,
+                "Father" = "dad", 
+                "Mother" = "mom")
             
-            blabel <- switch(input$family,
-                          "Fathers and Sons" = "Heights of Sons based on Father's Height", 
-                          "Mothers and Sons" =  "Heights of Sons based on Mother's Height",
-                          "Fathers and Daughters" =  "Heights of Daughters based on Father's Height",
-                          "Mothers and Daughters" =  "Heights of Daughters based on Mother's Height")   
+            chl.gen <- switch(input$cgen,
+                           "Son" = "son", 
+                           "Daughter" = "daughter")
+   
+            if (par.gen == "dad" && chl.gen == "son") {
+                fam = "fs"
+                colors = "navy"
+                blabel = "Heights of Sons"
+            }
 
+            if (par.gen == "dad" && chl.gen == "daughter") {
+                fam = "fd"
+                colors = "purple"
+                blabel = "Heights of Daughters"
+            }
+            
+            if (par.gen == "mom" && chl.gen == "son") {
+                fam = "ms"
+                colors = "blue"
+                blabel = "Heights of Sons"
+            }
+            
+            if (par.gen == "mom" && chl.gen == "daughter") {
+                fam = "md"
+                colors = "red"
+                blabel = "Heights of Daughters"
+            }
+            
 #            g <- ggplot(data = PearsonLee, aes(PearsonLee$child[PearsonLee$gp == fam]))
 #            g <- g + geom_histogram(aes(y = ..density..), fill = colors, binwidth=1, colour = "black")
 #            g <- g + geom_density(size = 2, colour = "black")
