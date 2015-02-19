@@ -27,11 +27,18 @@ shinyServer(
                           "Mothers and Sons" =  "Heights of Sons based on Mother's Height",
                           "Fathers and Daughters" =  "Heights of Daughters based on Father's Height",
                           "Mothers and Daughters" =  "Heights of Daughters based on Mother's Height")   
+
+#            g <- ggplot(data = PearsonLee, aes(PearsonLee$child[PearsonLee$gp == fam]))
+#            g <- g + geom_histogram(aes(y = ..density..), fill = colors, binwidth=1, colour = "black")
+#            g <- g + geom_density(size = 2, colour = "black")
+#            g            
             
-            h <- hist(PearsonLee$child[PearsonLee$gp == fam], col = colors,  
-                      xlab = blabel, breaks = 20,
-                      main = "Children Heights in 1900 England")
-            h
+            
+            hist(PearsonLee$child[PearsonLee$gp == fam], col = colors,  
+                      main = blabel, breaks = 20,
+                      xlab = "Average height shown with orange line")
+            abline(v = mean(PearsonLee$child[PearsonLee$gp == fam]), col = "orange", lwd = 2)
+
             })
     }
 )
