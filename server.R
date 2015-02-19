@@ -1,5 +1,5 @@
 library(shiny)
-library(ggplot2)
+library(RColorBrewer)
 
 ## Data and prediction model
 library(HistData)
@@ -20,34 +20,28 @@ shinyServer(
    
             if (par.gen == "dad" && chl.gen == "son") {
                 fam = "fs"
-                colors = "navy"
+                colors = brewer.pal(9, "Blues")
                 blabel = "Heights of Sons"
             }
 
             if (par.gen == "dad" && chl.gen == "daughter") {
                 fam = "fd"
-                colors = "purple"
+                colors = brewer.pal(9, "Purples")
                 blabel = "Heights of Daughters"
             }
             
             if (par.gen == "mom" && chl.gen == "son") {
                 fam = "ms"
-                colors = "blue"
+                colors = brewer.pal(9, "Reds")
                 blabel = "Heights of Sons"
             }
             
             if (par.gen == "mom" && chl.gen == "daughter") {
                 fam = "md"
-                colors = "red"
+                colors = brewer.pal(9, "Greens")
                 blabel = "Heights of Daughters"
             }
-            
-#            g <- ggplot(data = PearsonLee, aes(PearsonLee$child[PearsonLee$gp == fam]))
-#            g <- g + geom_histogram(aes(y = ..density..), fill = colors, binwidth=1, colour = "black")
-#            g <- g + geom_density(size = 2, colour = "black")
-#            g            
-            
-            
+                        
             hist(PearsonLee$child[PearsonLee$gp == fam], col = colors,  
                       main = blabel, breaks = 20,
                       xlab = "Average height shown with orange line")
