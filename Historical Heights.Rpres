@@ -1,0 +1,39 @@
+Historical Heights
+========================================================
+author: 
+date: 
+
+First Slide
+========================================================
+
+For more details on authoring R presentations click the
+**Help** button on the toolbar.
+
+- Bullet 1
+- Bullet 2
+- Bullet 3
+
+Slide With Code
+========================================================
+
+```{r, echo=FALSE}
+library(shiny)
+
+library(HistData)
+data(PearsonLee)
+
+
+boxplot(PearsonLee$child ~ PearsonLee$gp, col = c(2, 3, 5, 7), 
+        main = "Heights Based on Parent/Child genders")
+```
+
+Slide With Plot
+========================================================
+
+```{r, echo=FALSE}
+plot(cars)
+```
+
+Big Finish
+========================================================
+
