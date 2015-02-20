@@ -41,12 +41,16 @@ shinyServer(
                 colors = brewer.pal(9, "Greens")
                 blabel = "Heights of Daughters"
             }
+            
+            your_height <- (input$yft * 12) + input$yin
                         
             hist(PearsonLee$child[PearsonLee$gp == fam], col = colors,  
                       main = blabel, breaks = 20,
-                      xlab = "Average height shown with orange line")
-            abline(v = mean(PearsonLee$child[PearsonLee$gp == fam]), col = "orange", lwd = 2)
-
+                      xlab = "")
+            abline(v = mean(PearsonLee$child[PearsonLee$gp == fam]), col = "orange", lwd = 3)
+            abline(v = your_height, col = "gold", lwd = 3)
+            legend("topright",legend = c("Average Height","Your Height"), 
+                   lty = "solid", col = c("orange", "gold"))
             })
     }
 )
