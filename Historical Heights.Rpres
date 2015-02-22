@@ -1,39 +1,58 @@
 Historical Heights
 ========================================================
-author: 
-date: 
+font-family: 'Baskerville Old Face'
+<IMG SRC="historicalPic.jpg" ALT="">
 
-First Slide
+
+Entering an alternate world
 ========================================================
 
-For more details on authoring R presentations click the
-**Help** button on the toolbar.
+Who hasn't wondered how they would compare with their ancestors? Whether 
+our modern society has made us stronger or weaker, faster or slower, shorter
+or taller? The **Historical Heights** app lets you see the average heights from
+a group of English people living in 1896 and 1903. Even better, you can see
+how your own height compares to theirs.
 
-- Bullet 1
-- Bullet 2
-- Bullet 3
+This app will appeal to
+- **Genealogists**
+- **Historical re-enactors**
+- **Educators everywhere**
 
-Slide With Code
+Backed With Research
 ========================================================
-
+The **Historical Heights** data was collected by British mathematicians **Alice Lee** and **Karl Pearson**. Pearson has been credited with establishing the discipline of **mathematical statistics**, and was a student of statistician Sir Francis Galton. From 1892 Lee worked for Pearson in his laboratories, and together they performed the research that led to this groundbreaking app.
+***
 ```{r, echo=FALSE}
-library(shiny)
-
 library(HistData)
 data(PearsonLee)
 
-
-boxplot(PearsonLee$child ~ PearsonLee$gp, col = c(2, 3, 5, 7), 
-        main = "Heights Based on Parent/Child genders")
+boxplot(PearsonLee$child ~ PearsonLee$chl, col = c("green", "purple"), 
+        main = "Children's Heights By Gender", xlab="Data via Pearson and Lee")
 ```
 
-Slide With Plot
+Educational
 ========================================================
 
 ```{r, echo=FALSE}
-plot(cars)
+library(RColorBrewer)
+hist(PearsonLee$child[PearsonLee$chl == "Son"], col = brewer.pal(9, "Purples"),  
+main = "Height of Boys, 1896 and 1903", breaks = 20, xlab = "height in inches")
+abline(v = mean(PearsonLee$child[PearsonLee$chl == "Son"]), col = "orange", lwd = 3)
+abline(v = 74, col = "red", lwd = 3)
 ```
+***
+Not only do users of the new **Historical Heights** app see how well boys and girls grew in the past, they can also compare their own height to the average height of the children. By varying the height, they can also compare their brothers and sisters. 
 
-Big Finish
+**Fun for the whole family!**
+
+Part of an Exciting Product Family
 ========================================================
+**Historical Heights** is the first app in a family of educational, fun-filled apps designed to display and predict information from the past, including
+
+- **Historical Hits** -- From the Battle of Visby in 1361, find out which armor type led to the fewest battlefield defeats
+- **Historical Hots** -- Predict volcanic eruptions based on historical locations in the past, and how much damage they will do
+- **Historical Heavies** -- Worried about your own weight? Discover the heaviest men and women in history.
+
+<center>**Spread the word!**</center>
+
 
